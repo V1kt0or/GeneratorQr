@@ -19,10 +19,10 @@
 
 ## How to use
 - Upload the .txt file (to avoid errors use the format shown above). The title that each QR will have will be shown on the left side and next to it the description that will appear when reading the QR.
-![P1](I1.pmg)
+![P1](I2.png)
 - On the right side you select the number of QR codes that will appear on a page of the pdf.
-[P2](I2.pmg)
+[P2](I3.png)
 - Selecting "Convert to QR" will generate the pdf in the specified path.
-[P3](I3.pmg)
+[P3](I4.png)
 -In the created pdf you will see the QRs as shown below.
-[P4](I4.pmg)
+[P4](I5.png)
