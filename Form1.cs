@@ -56,10 +56,16 @@ namespace GeneradorQr
                 
                 foreach (string linea in Lineas)
                 {
-                    string[] division = linea.Split(new string[] { " " }, 2, StringSplitOptions.None);
-        
-                    dataGridView1.Rows.Add(division[0], division[1]);
-                  
+                    try
+                    {
+                        string[] division = linea.Split(new string[] { " " }, 2, StringSplitOptions.None);
+
+                        dataGridView1.Rows.Add(division[0], division[1]);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Invalid text format", "Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    }
 
                 }
 
@@ -68,14 +74,67 @@ namespace GeneradorQr
             }
             else
             {
-                MessageBox.Show("Error. Use solo archivos .txt");
+                MessageBox.Show("Only .txt files are allowed", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
                 private void btn_QRconv_Click(object sender, EventArgs e)
                 {
-                    Table table = new Table(UnitValue.CreatePercentArray(5)).UseAllAvailableWidth();
+                    int TamanoQr = 85;
+                    int TamanoTexto = 10;
+                    int CantidadFilas = 6;
+            if (Qr_quantity.SelectedIndex == 0)
+            {
+                 TamanoQr = 85;
+                 TamanoTexto = 10;
+                 CantidadFilas = 6;
+            }
+            else if (Qr_quantity.SelectedIndex == 1)
+            {
+                TamanoQr = 100;
+                TamanoTexto = 10;
+                CantidadFilas = 5;
+            }
+            else if (Qr_quantity.SelectedIndex == 2)
+            {
+                TamanoQr = 120;
+                TamanoTexto = 15;
+                CantidadFilas = 4;
+            }
+            else if (Qr_quantity.SelectedIndex == 3)
+            {
+                TamanoQr = 130;
+                TamanoTexto = 15;
+                CantidadFilas = 4;
+            }
+            else if (Qr_quantity.SelectedIndex == 4)
+            {
+                TamanoQr = 150;
+                TamanoTexto = 20;
+                CantidadFilas = 4;
+            }
+            else if (Qr_quantity.SelectedIndex == 5)
+            {
+                TamanoQr = 169;
+                TamanoTexto = 25;
+                CantidadFilas = 3;
+            }
+            else if (Qr_quantity.SelectedIndex == 6)
+            {
+                TamanoQr = 300;
+                TamanoTexto = 40;
+                CantidadFilas = 1;
+            }
+            else if (Qr_quantity.SelectedIndex == 7)
+            {
+                TamanoQr = 530;
+                TamanoTexto = 70;
+                CantidadFilas = 1;
+            }
+                    
+            //42 = (85,10,6) 30 = (100,10,5) 12 =(150,20,3) 16 =(130,15,4) 20 =(120,15,4) 9 = (169,25,3) 2 = (300,40,1) 1 = (530,70,1)
+            Table table = new Table(UnitValue.CreatePercentArray(CantidadFilas)).UseAllAvailableWidth();
                     var savefiledialoge = new SaveFileDialog();
-                    savefiledialoge.FileName = "Códigos " + DateTime.Now.ToString("yyyy-MM-dd");
+                    savefiledialoge.FileName = "Code QR " + DateTime.Now.ToString("yyyy-MM-dd");
                     savefiledialoge.DefaultExt = ".pdf";
                     if (savefiledialoge.ShowDialog() == DialogResult.OK)
                     {
@@ -84,8 +143,8 @@ namespace GeneradorQr
 
                             PdfDocument pdfDoc = new PdfDocument(new PdfWriter(stream));
                             Document doc = new Document(pdfDoc);
-
-                    
+                            
+                             
                             int Cont = 0;
                             foreach (DataGridViewRow row in dataGridView1.Rows)
                             {
@@ -96,13 +155,13 @@ namespace GeneradorQr
                                     Paragraph Titulo = new Paragraph("  "+ value1).SetHorizontalAlignment(HorizontalAlignment.CENTER);
                                     BarcodeQRCode qrcode1 = new BarcodeQRCode(row.Cells[0].Value.ToString() + "\n" + row.Cells[1].Value.ToString());
                                     cell.Add(Titulo.SetHorizontalAlignment(HorizontalAlignment.CENTER));
-                                    cell.Add(new Image(qrcode1.CreateFormXObject(pdfDoc)).SetHeight(100));
+                                    cell.Add(new Image(qrcode1.CreateFormXObject(pdfDoc)).SetHeight(TamanoQr).SetHorizontalAlignment(HorizontalAlignment.CENTER));
                                     table.AddCell(cell);
                                     Cont++;
                                 }
 
                             }
-                            table.SetFontSize(10);
+                            table.SetFontSize(TamanoTexto);
                             table.SetTextAlignment(TextAlignment.CENTER);
                             doc.Add(table);
                             doc.Close();
@@ -112,9 +171,29 @@ namespace GeneradorQr
                         
                     }
 
+            MessageBox.Show("QRs generated correctly", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Qr_quantity.Items.Add("42");
+            Qr_quantity.Items.Add("30");
+            Qr_quantity.Items.Add("20");
+            Qr_quantity.Items.Add("16");
+            Qr_quantity.Items.Add("12");
+            Qr_quantity.Items.Add("9");
+            Qr_quantity.Items.Add("2");
+            Qr_quantity.Items.Add("1");
+            Qr_quantity.SelectedIndex = 0;
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
