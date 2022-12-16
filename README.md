@@ -19,10 +19,17 @@
 
 ## How to use
 - Upload the .txt file (to avoid errors use the format shown above). The title that each QR will have will be shown on the left side and next to it the description that will appear when reading the QR.
-![P1](I2.png)
+
+![P1](https://github.com/V1kt0or/GeneratorQr/blob/master/I2.PNG)
+
 - On the right side you select the number of QR codes that will appear on a page of the pdf.
-[P2](I3.png)
+
+[P2](https://github.com/V1kt0or/GeneratorQr/blob/master/I3.PNG)
+
 - Selecting "Convert to QR" will generate the pdf in the specified path.
-[P3](I4.png)
+
+[P3](https://github.com/V1kt0or/GeneratorQr/blob/master/I4.png)
+
 -In the created pdf you will see the QRs as shown below.
-[P4](I5.png)
+
+[P4](https://github.com/V1kt0or/GeneratorQr/blob/master/I5.png)
