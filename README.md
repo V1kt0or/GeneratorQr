@@ -24,12 +24,12 @@
 
 - On the right side you select the number of QR codes that will appear on a page of the pdf.
 
-[P2](https://github.com/V1kt0or/GeneratorQr/blob/master/I3.PNG)
+![P2](https://github.com/V1kt0or/GeneratorQr/blob/master/I3.PNG)
 
 - Selecting "Convert to QR" will generate the pdf in the specified path.
 
-[P3](https://github.com/V1kt0or/GeneratorQr/blob/master/I4.png)
+![P3](https://github.com/V1kt0or/GeneratorQr/blob/master/I4.png)
 
 -In the created pdf you will see the QRs as shown below.
 
-[P4](https://github.com/V1kt0or/GeneratorQr/blob/master/I5.png)
+![P4](https://github.com/V1kt0or/GeneratorQr/blob/master/I5.png)
